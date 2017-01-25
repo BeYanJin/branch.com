@@ -1,0 +1,33 @@
+<div class="top-nav-wrap">
+	<!-- /header -->
+	<div class="clear-fixed"></div>
+	<header>
+		<!-- nav -->
+		<nav>
+			<div class="nav-wrap">
+				<div class="nav-bar">
+					<h1>支路（story）</h1>
+					<ul>
+						<li ng-click="checkingMyMenu = false;"><a ui-sref="content.storylists">看故事</a></li>
+						<li ng-click="checkingMyMenu = false;"><a ui-sref="content.writing">写故事</a></li>
+						<li ng-click="checkingMyMenu = !checkingMyMenu;"><a ui-sref="./">我的</a></li>
+					</ul>
+				</div>
+				<div class="my-menu" ng-click="checkingMyMenu = false;" ng-show="checkingMyMenu">
+					<ul>
+						<li><a ui-sref="content.track">我的足迹</a></li>
+						<li><a ui-sref="content.collection">我的收藏</a></li>
+						<li><a ui-sref="content.setting">我的设置</a></li>
+						<li><a href="../">退出登录</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- </nav> -->
+	</header>
+
+	<!-- section -->
+	<section>
+		<div ui-view="section"></div>
+	</section>
+</div>

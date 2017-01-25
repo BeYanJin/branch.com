@@ -1,0 +1,4 @@
+<div ng-message="required">请填写账号</div>
+<div ng-if="registerForm.username.$error.email">
+    <div ng-message="pattern">手机号或邮箱格式无效</div>
+</div>

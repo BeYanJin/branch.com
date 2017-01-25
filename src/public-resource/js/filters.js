@@ -1,0 +1,1 @@
+var branchFilters = angular.module('branchFilters', []);

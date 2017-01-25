@@ -1,0 +1,28 @@
+<div class="track-wrap">
+	<!-- header -->
+	<header>
+		<div class="header-wrap">
+			<h1>我的足迹</h1>
+		</div>
+	</header>
+
+	<!-- section -->
+	<section>
+		<div class="section-wrap">
+	        <div class="cell" ng-repeat="x in stories">
+	        	<a ui-sref="content.storylists.reading">
+                    <img ng-src="{{ x.pic }}" alt="Responsive image">
+					<div class="content">
+						<p>
+							<span ng-bind="x.date"></span>
+							<span ng-bind="x.time"></span>
+						</p>
+						<h1 ng-bind="x.title"></h1>
+						<h2 ng-bind="x.abstract"></h2>
+					</div>
+				</a>
+			</div>
+		</div>
+	</section>
+</div>
+

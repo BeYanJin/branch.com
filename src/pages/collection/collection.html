@@ -1,0 +1,28 @@
+<div class="collection-wrap">
+    <!-- header -->
+    <header>
+    	<div class="header-wrap">
+    		<h1>我的收藏</h1>
+    	</div>
+    </header>
+
+    <!-- section -->
+    <section>
+        <div class="section-wrap">
+            <div class="cell"  ng-repeat="x in stories">
+                <div class="cell-wrap">
+                    <a ui-sref="content.storylists.reading">
+                        <h1 ng-bind="x.title" class="atitle visible-xs-block"></h1>
+                        <img ng-src="{{ x.pic }}" alt="Responsive image">
+                        <div class="content">
+                            <h1 ng-bind="x.title" class="atitle hidden-xs"></h1>
+                            <h2 ng-bind="x.abstract"></h2>
+                            <p>阅读<span ng-bind="x.readers"></span>评论<span ng-bind="x.reviews"></span>收藏<span ng-bind="x.collecters"></span></p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

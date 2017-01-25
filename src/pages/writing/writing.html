@@ -1,0 +1,28 @@
+<div class="writing-wrap">
+    <section>
+        <div class="section-wrap">
+            <div class="main">
+                <form name="writingForm" method="post">
+                    <div class="cell">
+                        <span>标题</span>
+                        <input type="text" name="title" ng-model="inputs.title.value" ng-disabled="inputs.title.disabled" ng-value="inputs.title.value"/>
+                        <button type="button" class="hidden-xs" ng-click="ensureORalter($event, 'title')">确定</button>
+                        <button type="button" class="hidden-xs" ng-click="delete('title')">删除</button>
+                    </div>
+                    <div class="cell">
+                        <span>摘要</span>
+                        <input type="text" name="abstract" ng-model="inputs.abstract.value" ng-disabled="inputs.abstract.disabled" ng-value="inputs.abstract.value"/>
+                        <button type="button" class="hidden-xs" ng-click="ensureORalter($event, 'abstract')">确定</button>
+                        <button type="button" class="hidden-xs" ng-click="delete('abstract')">删除</button>
+                    </div>
+                    <div class="cell photo-area" ng-style="photoAreaStyle">
+                        <input type="file" onchange='angular.element(this).scope().fileChanged(this);'>
+                        <img ng-src="{{ image.src }}" ng-show="image.src != null" alt="上传图片失败">
+                        <div></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+

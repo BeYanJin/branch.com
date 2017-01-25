@@ -1,0 +1,26 @@
+{
+  "name": "branch",
+  "version": "0.0.1",
+  "authors": [
+    "tanyujin <tanyujin_scut@163.com>"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "framework",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "jquery-validation": "jquery.validate#1.13.0",
+    "angular": "angularjs#1.5.8",
+    "oclazyload": "^1.0.9",
+    "bootstrap": "^3.3.7"
+  }
+}

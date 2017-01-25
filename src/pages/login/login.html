@@ -1,0 +1,132 @@
+<div class="login-wrap">
+    <!-- 移动端的顶部栏,  屏幕宽度小于768px可见 -->
+	<header>
+		<div class="header-wrap visible-xs-block">
+			<p>支路（storry）</p>
+		</div>
+	</header>
+    <!-- 登录与注册模块 -->
+    <div class="main">
+        <!-- 支路大标题 -->
+        <h1>支路</h1>
+
+        <!-- 登录与注册按钮 -->
+        <p>
+            <span ng-click="status.login = true;
+                            user.register.u_errorDisp = false;
+                            user.register.p_errorDisp = false;
+                            user.register.p2_ErrorDisp = false;"
+                  ng-class="{ 'checked': status.login }">登录</span>
+            <span ng-click="status.login = false;
+                            user.login.u_errorDisp = false;
+                            user.login.p_errorDisp = false;"
+                  ng-class="{ 'checked': !status.login }">注册</span>
+        </p>
+
+        <!-- 登录表单 -->
+		<form name="loginForm" autocomplete="off" novalidate ng-show="status.login" ng-submit="submitLoginForm(loginForm);">
+			<!-- 账号输入框 -->
+			<div class="username">
+                <!-- 标志用户输入框的图片 -->
+				<label></label>
+				<div class="cell">
+					<input  type="email"
+							placeholder="手机号或邮箱"
+							name="username"
+							ng-focus="user.login.u_errorDisp = false;"
+							ng-model="user.login.username"
+                            ng-pattern="/^1[34578]\d{9}$/"
+							required />
+                    <!-- 错误信息 -->
+                    <div class="messages" ng-show="user.login.u_errorDisp" ng-messages="loginForm.username.$error">
+                        <div ng-messages-include src="pages/login/templates/signin/username-messages.html"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- 密码输入框 -->
+            <div class="password">
+                <!-- 标志密码输入框的图片 -->
+                <label></label>
+                <div class="cell">
+                    <input  type="password"
+                            placeholder="密码"
+                            name="password"
+                            ng-focus="user.login.p_errorDisp = false;"
+                            ng-model="user.login.password"
+                            ng-minlength="6"
+                            ng-maxlength="16"
+                            required />
+                    <!-- 错误信息 -->
+					<div class="messages" ng-show="user.login.p_errorDisp" ng-messages="loginForm.password.$error">
+						<div ng-messages-include src="pages/login/templates/signin/password-messages.html"></div>
+					</div>
+				</div>
+			</div>
+			<!-- 提交按钮 -->
+			<button type="submit">登录</button>
+		</form>
+
+        <!-- 注册表单 -->
+        <form name="registerForm" autocomplete="off" novalidate ng-show="!status.login" ng-submit="submitRegisterForm(registerForm);">
+            <!-- 账号输入框 -->
+            <div class="username">
+                <!-- 标志用户输入框的图片 -->
+                <label></label>
+                <div class="cell">
+                    <input  type="email"
+                            placeholder="手机号或邮箱"
+                            name="username"
+                            ng-focus="user.register.u_errorDisp = false;"
+                            ng-model="user.register.username"
+                            ng-pattern="/^1[34578]\d{9}$/"
+                            required />
+                    <!-- 错误信息 -->
+                    <div class="messages" ng-show="user.register.u_errorDisp" ng-messages="registerForm.username.$error">
+                        <div ng-messages-include src="pages/login/templates/signup/username-messages.html"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- 密码输入框 -->
+            <div class="password">
+                <!-- 标志密码输入框的图片 -->
+                <label></label>
+                <div class="cell">
+                    <input  type="password"
+                            placeholder="密码（不少于6位）"
+                            name="password"
+                            ng-focus="user.register.p_errorDisp = false;"
+                            ng-model="user.register.password"
+                            ng-minlength="6"
+                            ng-maxlength="16"
+                            required />
+                    <!-- 错误信息 -->
+                    <div class="messages" ng-show="user.register.p_errorDisp" ng-messages="registerForm.password.$error">
+                        <div ng-messages-include src="pages/login/templates/signup/password-messages.html"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- 密码输入框 -->
+            <div class="password">
+                <!-- 标志密码输入框的图片 -->
+                <label></label>
+                <div class="cell">
+                    <input  type="password"
+                            placeholder="确认密码"
+                            name="password2"
+                            ng-focus="user.register.p2_ErrorDisp = false;"
+                            ng-model="user.register.password2"
+                            ng-minlength="6"
+                            ng-maxlength="16"
+                            required />
+                    <!-- 错误信息 -->
+                    <div class="messages" ng-show="user.register.p2_ErrorDisp" ng-messages="registerForm.password2.$error">
+                        <div ng-messages-include src="pages/login/templates/signup/password2-messages.html"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- 提交按钮 -->
+            <button type="submit">注册</button>
+        </form>
+
+	</div>
+</div>

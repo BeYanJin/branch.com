@@ -1,0 +1,123 @@
+@import "../../../public-resource/scss/variables";
+@import "../../../public-resource/scss/mixins";
+.login-wrap {
+    .header-wrap {
+        width: 100%;
+        background-color: #399;
+        position: fixed;
+        top: 0;
+        z-index: 999;
+        p {
+            color: white;
+            font-size: 18px;
+            line-height: 45px;
+            text-align: center;
+        }
+    }
+
+    span {
+        color: #757275;
+    }
+
+    .main {
+        @include w-h(370px, 700px);
+        margin: 110px auto 0;
+        h1 {
+            padding: 0 0 40px 6px;
+            color: #399;
+            letter-spacing: 12px;
+            font-size: 65px;
+            text-align: center;
+            border-bottom: 1px solid #399;
+        }
+        p {
+            margin: 1px 0 20px;
+            text-align: center;
+            font-size: 0;
+            span {
+                display: inline-block;
+                height: 45px;
+                font-size: 23px;
+                line-height: 45px;
+                letter-spacing: 5px;
+                cursor: pointer;
+                &:first-child {
+                    padding-right: 15%;
+                    border-right: 1px solid #399;
+                }
+                &:last-child {
+                    padding-left: 15%;
+                }
+            }
+        }
+    }
+
+    .checked {
+        color: #399;
+    }
+
+    .username, .password {
+        position: relative;
+        .cell {
+            width: 100%;
+            padding-left: 50px;
+        }
+        label {
+            width: 30px;
+            height: 50px;
+            float: left;
+        }
+    }
+
+
+    .username label {
+        background: url("../../../public-resource/images/username.jpg") no-repeat center;
+    }
+
+    .password {
+        margin: 25px 0;
+        label {
+            background: url("../images/password.jpg") no-repeat center;
+        }
+    }
+
+    input[type="text"], input[type="email"], input[type="password"] {
+        width: 100%;
+        padding: 15px;
+        color: #E0DCE0;
+        font-size: 15px;
+        border: 1px solid #BBB;
+        &:focus {
+            color: #757275;
+            border-color: #5e5;
+            box-shadow: 0 0 5px #5e5;
+            @include prefix(transition, (all .3s ease-in-out));
+        }
+    }
+
+    .messages {
+        @include position(absolute, top, 17px, right, 20px);
+        font-size: 14px;
+        color : red;
+        z-index: 1;
+        cursor: text;
+    }
+
+    button {
+        @include w-h(100%, 50px);
+        padding-left: 6px;
+        color: white;
+        font-size: 22px;
+        letter-spacing: 6px;
+        border: none;
+        border-radius: 4px;
+        background-color: #399;
+        cursor: pointer;
+        &:hover {
+            background-color: #188;
+        }
+        &:focus{
+            outline: 0;
+        }
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "name": "branch.com",
+    "version": "1.0.0",
+    "description": "",
+    "main": "bundle.js",
+    "scripts": {
+        "start": "webpack-dev-server --hot"
+    },
+    "author": "TanYuJin",
+    "license": "ISC",
+    "devDependencies": {
+        "autoprefixer": "^6.6.1",
+        "babel-core": "^6.21.0",
+        "babel-loader": "^6.2.10",
+        "babel-preset-es2015": "^6.18.0",
+        "babel-preset-react": "^6.16.0",
+        "css-loader": "^0.26.1",
+        "extract-text-webpack-plugin": "^1.0.1",
+        "html-webpack-plugin": "^2.26.0",
+        "json-loader": "^0.5.4",
+        "postcss-loader": "^1.2.2",
+        "style-loader": "^0.13.1",
+        "webpack": "^1.14.0",
+        "webpack-dev-server": "^1.16.2"
+    }
+}

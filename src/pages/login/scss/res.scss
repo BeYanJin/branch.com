@@ -1,0 +1,6 @@
+@import "../../../public-resource/scss/variables";
+@import "../../../public-resource/scss/mixins";
+
+@media screen and (max-width: 768px) {
+    .login-wrap .main { width: 80%; }
+}

@@ -1,0 +1,82 @@
+@import "../../../public-resource/scss/variables";
+@import "../../../public-resource/scss/mixins";
+.top-nav-wrap {
+    .clear-fixed {
+        width: 100%;
+        height: $navHeight;
+    }
+    .nav-wrap {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 999;
+        -webkit-transform: translateZ(0);
+    }
+
+    .nav-bar {
+        width: 100%;
+        overflow: hidden;
+        border-radius: 0;
+        background-color: #399;
+        color: white;
+        h1 {
+            float: left;
+            font-size: 28px;
+            line-height: $navHeight;
+            font-weight: 500;
+            margin: -$navHeight/14 0 0 75px;
+        }
+        ul {
+            @include prefix(box-sizing, border-box);
+            height: $navHeight;
+            padding-right: 30px;
+            float: right;
+            li {
+                float: left;
+                line-height: $navHeight;
+                + li + li {
+                    a { border-right: none; }
+                }
+                a {
+                    display: inline-block;
+                    padding: 0 20px;
+                    line-height: 33px;
+                    width: 100%;
+                    color: white;
+                    font-size: 18px;
+                    text-align: center;
+                    cursor: pointer;
+                    border-right: 1px solid white;
+                }
+            }
+        }
+    }
+
+    .my-menu {
+        position: absolute;
+        right: 0;
+        z-index: 1;
+        ul {
+            width: 195px;
+            padding: 0;
+            background-color: #399;
+        }
+        li {
+            margin-left: 10px;
+            @include w-h(175px, 50px);
+            text-align: center;
+            line-height: 50px;
+            border-bottom: 1px solid white;
+            + li + li + li {
+                border-bottom: none;
+            }
+        }
+        a {
+            display: inline-block;
+            width: 100%;
+            color: white;
+            font-size: 18px;
+        }
+    }
+}
+

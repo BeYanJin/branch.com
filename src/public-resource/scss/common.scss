@@ -1,0 +1,45 @@
+@import "variables";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body, div, form, button, input, select, textarea, button, h1 ,h2, h3, h4, h5, h6, p, span, ul, li {
+    margin: 0;
+    padding: 0;
+    font-family: $fontStack;
+}
+
+.clear {
+    clear: both;
+}
+
+a {
+    text-decoration: none;
+    &:hover {
+        text-decoration: none;
+    }
+    &:visited {
+        text-decoration: none;
+    }
+    &:link {
+        text-decoration: none;
+    }
+    &:active {
+        text-decoration: none;
+    }
+}
+
+button {
+    outline:none
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.ng-cloak {
+    display: none;
+}

@@ -1,0 +1,39 @@
+@import "../../../public-resource/scss/variables";
+@import "../../../public-resource/scss/mixins";
+.setting-wrap {
+    h1,h2 {
+        font-weight: 500;
+    }
+
+    .header-wrap {
+        div:first-child {
+            margin: 30px auto 45px;
+            width: 120px;
+            text-align: right;
+            background: url('..//images/setting.jpg') no-repeat left center;
+            background-size: auto cover;
+        }
+        h1 {
+            color: #44A1A1;
+            font-size: 22px;
+            font-weight: 500;
+        }
+        div:last-child {
+            text-align: center;
+            ul {
+                font-size: 0;
+            }
+            li {
+                display: inline-block;
+                padding: 0 40px;
+                line-height: 33px;
+                border-right: 1px solid #bbb;
+                &:first-child { border-left: 1px solid #bbb; }
+            }
+            a {
+                font-size: 18px;
+                color: #bbb;
+            }
+        }
+    }
+}
