@@ -1,4 +1,7 @@
 <div ng-message="required">请填写账号</div>
-<div ng-if="registerForm.username.$error.email">
-    <div ng-message="pattern">手机号或邮箱格式无效</div>
+<div ng-if="registerForm.username.$error.email && registerForm.username.$error.pattern">
+    <div>手机号或邮箱格式无效</div>
+</div>
+<div ng-if="register.username.valid">
+    <div>该账号已注册<span ng-click="turnToLogin()"> - 直接登录</span></div>
 </div>

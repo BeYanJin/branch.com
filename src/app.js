@@ -12,7 +12,7 @@ var myApp = angular.module("myApp", ['oc.lazyLoad', 'ui.router',
 myApp.config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
     $ocLazyLoadProvider.config({
         // $ocLazyLoad returns a promise that will be rejected when there is an error but if you set debug to true, $ocLazyLoad will also log all errors to the console.
-        // debug: true,
+        debug: true,
         // $ocLazyLoad can broadcast an event when you load a module, a component or a file (js/css/template). It is disabled by default, set events to true to activate it. The events are ocLazyLoad.moduleLoaded, ocLazyLoad.moduleReloaded, ocLazyLoad.componentLoaded, ocLazyLoad.fileLoaded
         events: false,
         modules: [
@@ -38,6 +38,7 @@ myApp.config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
             {
                 name: 'readingModule',
                 files: ['pages/Storylists/reading/js/reading-controller.js',
+                        'components/search-box/css/style.css',
                         'pages/storylists/reading/css/style.css',
                         'pages/storylists/reading/css/res.css']
             },
@@ -71,7 +72,7 @@ myApp.config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
 
 myApp.config(['$stateProvider', '$urlRouterProvider',
     function ($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('signin');
+        $urlRouterProvider.otherwise('storylists');
         $stateProvider
         .state('login', {
             // 该视图会使用下面resolve方法加载的控制器
@@ -104,20 +105,6 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
                 }]
             }
         })
-        .state('content.signin', {
-            url: 'signin',
-            views: {
-                "body@content": {
-                    templateUrl: 'pages/storylists/storylists.html',
-                    controller: 'storylistsCtrl',
-                }
-            },
-            resolve: {
-                loadStorylistsModule: ['$ocLazyLoad', function ($ocLazyLoad) {
-                    return $ocLazyLoad.load('storylistsModule');
-                }]
-            }
-        })
         .state('content.storylists', {
             url: 'storylists',
             views: {
@@ -132,8 +119,8 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
                 }]
             }
         })
-        .state('content.storylists.reading', {
-            url: '/reading',
+        .state('content.reading', {
+            url: 'reading',
             views: {
                 "body@content": {
                     templateUrl: 'pages/storylists/reading/reading.html',

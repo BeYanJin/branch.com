@@ -14,7 +14,6 @@
             text-align: center;
         }
     }
-
     span {
         color: #757275;
     }
@@ -101,6 +100,10 @@
         color : red;
         z-index: 1;
         cursor: text;
+        span {
+            color: black;
+            cursor: pointer;
+        }
     }
 
     button {

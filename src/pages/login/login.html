@@ -13,13 +13,16 @@
         <!-- 登录与注册按钮 -->
         <p>
             <span ng-click="status.login = true;
-                            user.register.u_errorDisp = false;
-                            user.register.p_errorDisp = false;
-                            user.register.p2_ErrorDisp = false;"
+                            register.username.showError = false;
+                            register.username.showRemoteError = false;
+                            register.password.showError = false;
+                            register.password2.showError = false;"
                   ng-class="{ 'checked': status.login }">登录</span>
             <span ng-click="status.login = false;
-                            user.login.u_errorDisp = false;
-                            user.login.p_errorDisp = false;"
+                            login.username.showError = false;
+                            login.username.showRemoteError = false;
+                            login.password.showError = false;
+                            login.password.isFocused = false;"
                   ng-class="{ 'checked': !status.login }">注册</span>
         </p>
 
@@ -31,14 +34,14 @@
 				<label></label>
 				<div class="cell">
 					<input  type="email"
-							placeholder="手机号或邮箱"
-							name="username"
-							ng-focus="user.login.u_errorDisp = false;"
-							ng-model="user.login.username"
+                            placeholder="手机号或邮箱"
+                            name="username"
+							ng-model="login.username.value"
+                            ng-focus="login.username.showError = false; login.username.showRemoteError = false;"
                             ng-pattern="/^1[34578]\d{9}$/"
 							required />
                     <!-- 错误信息 -->
-                    <div class="messages" ng-show="user.login.u_errorDisp" ng-messages="loginForm.username.$error">
+                    <div class="messages" ng-show="login.username.showError || login.username.showRemoteError" ng-messages="loginForm.username.$error">
                         <div ng-messages-include src="pages/login/templates/signin/username-messages.html"></div>
                     </div>
                 </div>
@@ -51,13 +54,14 @@
                     <input  type="password"
                             placeholder="密码"
                             name="password"
-                            ng-focus="user.login.p_errorDisp = false;"
-                            ng-model="user.login.password"
+                            ng-focus="login.password.showError = false;"
+                            ng-model="login.password.value"
                             ng-minlength="6"
                             ng-maxlength="16"
-                            required />
+                            is-focused="login.password.isFocused"
+                            required set-focus/>
                     <!-- 错误信息 -->
-					<div class="messages" ng-show="user.login.p_errorDisp" ng-messages="loginForm.password.$error">
+					<div class="messages" ng-show="login.password.showError" ng-messages="loginForm.password.$error">
 						<div ng-messages-include src="pages/login/templates/signin/password-messages.html"></div>
 					</div>
 				</div>
@@ -76,12 +80,12 @@
                     <input  type="email"
                             placeholder="手机号或邮箱"
                             name="username"
-                            ng-focus="user.register.u_errorDisp = false;"
-                            ng-model="user.register.username"
+                            ng-focus="register.username.showError = false; register.username.showRemoteError = false;"
+                            ng-model="register.username.value"
                             ng-pattern="/^1[34578]\d{9}$/"
                             required />
                     <!-- 错误信息 -->
-                    <div class="messages" ng-show="user.register.u_errorDisp" ng-messages="registerForm.username.$error">
+                    <div class="messages" ng-show="register.username.showError || register.username.showRemoteError" ng-messages="registerForm.username.$error">
                         <div ng-messages-include src="pages/login/templates/signup/username-messages.html"></div>
                     </div>
                 </div>
@@ -94,18 +98,18 @@
                     <input  type="password"
                             placeholder="密码（不少于6位）"
                             name="password"
-                            ng-focus="user.register.p_errorDisp = false;"
-                            ng-model="user.register.password"
+                            ng-focus="register.password.showError = false;"
+                            ng-model="register.password.value"
                             ng-minlength="6"
                             ng-maxlength="16"
                             required />
                     <!-- 错误信息 -->
-                    <div class="messages" ng-show="user.register.p_errorDisp" ng-messages="registerForm.password.$error">
+                    <div class="messages" ng-show="register.password.showError" ng-messages="registerForm.password.$error">
                         <div ng-messages-include src="pages/login/templates/signup/password-messages.html"></div>
                     </div>
                 </div>
             </div>
-            <!-- 密码输入框 -->
+            <!-- 确认密码输入框 -->
             <div class="password">
                 <!-- 标志密码输入框的图片 -->
                 <label></label>
@@ -113,13 +117,13 @@
                     <input  type="password"
                             placeholder="确认密码"
                             name="password2"
-                            ng-focus="user.register.p2_ErrorDisp = false;"
-                            ng-model="user.register.password2"
+                            ng-focus="register.password2.showError = false;"
+                            ng-model="register.password2.value"
                             ng-minlength="6"
                             ng-maxlength="16"
                             required />
                     <!-- 错误信息 -->
-                    <div class="messages" ng-show="user.register.p2_ErrorDisp" ng-messages="registerForm.password2.$error">
+                    <div class="messages" ng-show="register.password2.showError" ng-messages="registerForm.password2.$error">
                         <div ng-messages-include src="pages/login/templates/signup/password2-messages.html"></div>
                     </div>
                 </div>
