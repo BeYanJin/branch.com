@@ -2,5 +2,35 @@
 @import "../../../public-resource/scss/mixins";
 
 @media screen and (max-width: 768px) {
-    .login-wrap .main { width: 80%; }
+    .login-wrap {
+        .main { width: 65%; }
+        .popup {
+            width: 65%;
+        }
+    }
+}
+
+@media screen and (max-width: 568px) {
+    .login-wrap {
+        .main { width: 80%; }
+        .username, .password {
+            .cell {
+                padding-left: 40px;
+            }
+        }
+        .popup {
+            width: 80%;
+        }
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .login-wrap {
+        .popup {
+            form div.input-wrap label {
+                top: 40px;
+                left: 18px;
+            }
+        }
+    }
 }

@@ -1,6 +1,34 @@
 @import "../../../public-resource/scss/variables";
 @import "../../../public-resource/scss/mixins";
 .login-wrap {
+    span {
+        color: #757275;
+    }
+
+    .checked {
+        color: #399;
+    }
+
+    .disabled {
+        background-color: #aaa;
+        &:hover {
+            background-color: #aaa;
+        }
+    }
+
+    button {
+        color: white;
+        border: none;
+        background-color: #399;
+        cursor: pointer;
+        &:hover {
+            background-color: #188;
+        }
+        &:focus{
+            outline: 0;
+        }
+    }
+
     .header-wrap {
         width: 100%;
         background-color: #399;
@@ -14,12 +42,13 @@
             text-align: center;
         }
     }
-    span {
-        color: #757275;
+
+    .bg-opacity {
+        @include prefix(opacity, 0.3);
     }
 
     .main {
-        @include w-h(370px, 700px);
+        width: 370px;
         margin: 110px auto 0;
         h1 {
             padding: 0 0 40px 6px;
@@ -29,7 +58,7 @@
             text-align: center;
             border-bottom: 1px solid #399;
         }
-        p {
+        .text-btn {
             margin: 1px 0 20px;
             text-align: center;
             font-size: 0;
@@ -49,19 +78,42 @@
                 }
             }
         }
-    }
-
-    .checked {
-        color: #399;
+        input {
+            width: 100%;
+            padding: 15px;
+            color: #E0DCE0;
+            font-size: 15px;
+            border: 1px solid #BBB;
+            &:focus {
+                color: #757275;
+                border-color: #20B2AA;
+                outline-color: #20B2AA;
+                box-shadow: 0 0 5px 0 #20B2AA;
+                @include prefix(transition, (all .3s ease-in-out));
+            }
+        }
+        button {
+            @include w-h(100%, 50px);
+            padding-left: 6px;
+            font-size: 22px;
+            letter-spacing: 6px;
+        }
     }
 
     .username, .password {
-        position: relative;
         .cell {
+            position: relative;
             width: 100%;
             padding-left: 50px;
+            p {
+                position: absolute;
+                top: 16px;
+                margin-left: 16px;
+                color: #A9A9A9;
+                font-size: 15px;
+            }
         }
-        label {
+        >label {
             width: 30px;
             height: 50px;
             float: left;
@@ -69,30 +121,17 @@
     }
 
 
-    .username label {
+    .username>label {
         background: url("../../../public-resource/images/username.jpg") no-repeat center;
     }
 
     .password {
         margin: 25px 0;
-        label {
+        >label {
             background: url("../images/password.jpg") no-repeat center;
         }
     }
 
-    input[type="text"], input[type="email"], input[type="password"] {
-        width: 100%;
-        padding: 15px;
-        color: #E0DCE0;
-        font-size: 15px;
-        border: 1px solid #BBB;
-        &:focus {
-            color: #757275;
-            border-color: #5e5;
-            box-shadow: 0 0 5px #5e5;
-            @include prefix(transition, (all .3s ease-in-out));
-        }
-    }
 
     .messages {
         @include position(absolute, top, 17px, right, 20px);
@@ -106,21 +145,84 @@
         }
     }
 
-    button {
-        @include w-h(100%, 50px);
-        padding-left: 6px;
-        color: white;
-        font-size: 22px;
-        letter-spacing: 6px;
-        border: none;
-        border-radius: 4px;
-        background-color: #399;
-        cursor: pointer;
-        &:hover {
-            background-color: #188;
+    .popup {
+        position: relative;
+        @include w-h(400px, 295px);
+        margin: -310px auto 0;
+        border: 1px solid #BBB;
+        border-radius: 10px;
+        box-shadow: 0 0 10px 5px #dfdfdf;
+        background-color: white;
+        >div {
+            @include w-h(16px, 16px);
+            @include position(absolute, top, 15px, right, 15px);
+            background: url("../images/esc.png") no-repeat center center;
+            cursor: pointer;
         }
-        &:focus{
-            outline: 0;
+        h1, p {
+            text-align: center;
+        }
+        h1 {
+            margin: 25px 0;
+            font-size: 16px;
+            font-weight: 900;
+        }
+        p {
+            padding-bottom: 20px;
+            font-size: 12px;
+            border-bottom: 1px solid #bbb;
+        }
+        form {
+            .input-wrap {
+                position: relative;
+                @include w-h(100%, 50px);
+                border-bottom: 1px solid #bbb;
+                input {
+                    @include position(absolute, top, 0, left, 0);
+                    margin-top: 16px;
+                    padding-left: 18px;
+                    font-size: 14px;
+                    background-color: white;
+                }
+                label {
+                    position: absolute;
+                    left: 30%;
+                    color: #E34F1E;
+                    font-size: 15px;
+                    font-weight: 500;
+                    line-height: 50px;
+                    z-index: 1;
+                }
+                .send-mes-btn, .timer {
+                    width: 120px;
+                    text-align: center;
+                }
+                .send-mes-btn {
+                    @include position(absolute, top, 1px, right, 1px);
+                    color: white;
+                    line-height: 47px;
+                    background-color: orange;
+                    box-shadow: 0 0 1px 1px #fb0;
+                    cursor: pointer;
+                }
+                .timer {
+                    @include position(absolute, top, 0, right, 0);
+                    color: #807980;
+                    line-height: 49px;
+                    background-color: #ebebeb;
+                }
+            }
+            >div:last-child {
+                position: relative;
+                width: 100%;
+                button {
+                    @include w-h(126px, 34px);
+                    @include position(absolute, top, 30px, left, 50%);
+                    margin-left: -63px;
+                    font-size: 20px;
+                    border-radius: 5px;
+                }
+            }
         }
     }
 }

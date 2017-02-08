@@ -1,47 +1,43 @@
 <div class="login-wrap">
+
     <!-- 移动端的顶部栏,  屏幕宽度小于768px可见 -->
-	<header>
-		<div class="header-wrap visible-xs-block">
-			<p>支路（storry）</p>
-		</div>
-	</header>
+    <header>
+        <div class="header-wrap visible-xs-block">
+            <p>支路（storry）</p>
+        </div>
+    </header>
+
     <!-- 登录与注册模块 -->
-    <div class="main">
+    <div class="main" ng-class="{ 'bg-opacity': formChanger.registerPopup }">
         <!-- 支路大标题 -->
         <h1>支路</h1>
 
         <!-- 登录与注册按钮 -->
-        <p>
-            <span ng-click="status.login = true;
-                            register.username.showError = false;
-                            register.username.showRemoteError = false;
-                            register.password.showError = false;
-                            register.password2.showError = false;"
-                  ng-class="{ 'checked': status.login }">登录</span>
-            <span ng-click="status.login = false;
-                            login.username.showError = false;
-                            login.username.showRemoteError = false;
-                            login.password.showError = false;
-                            login.password.isFocused = false;"
-                  ng-class="{ 'checked': !status.login }">注册</span>
-        </p>
+        <div class="text-btn">
+            <span ng-click="formChanger.textbtnBeClicked()"
+                  ng-class="{ 'checked': formChanger.login }">登录</span>
+            <span ng-click="formChanger.textbtnBeClicked()"
+                  ng-class="{ 'checked': !formChanger.login }">注册</span>
+        </div>
 
         <!-- 登录表单 -->
-		<form name="loginForm" autocomplete="off" novalidate ng-show="status.login" ng-submit="submitLoginForm(loginForm);">
-			<!-- 账号输入框 -->
-			<div class="username">
+        <form name="loginForm" autocomplete="off" novalidate ng-show="formChanger.login" ng-submit="login.submitted(loginForm)">
+            <!-- 账号输入框 -->
+            <div class="username">
                 <!-- 标志用户输入框的图片 -->
-				<label></label>
-				<div class="cell">
-					<input  type="email"
-                            placeholder="手机号或邮箱"
+                <label></label>
+                <div class="cell">
+                    <input  type="email"
                             name="username"
-							ng-model="login.username.value"
-                            ng-focus="login.username.showError = false; login.username.showRemoteError = false;"
+                            placeholder="手机号或邮箱"
+                            ng-model="login.username.value"
+                            ng-focus="login.username.beFocused()"
                             ng-pattern="/^1[34578]\d{9}$/"
-							required />
+                            required />
+                    <!-- 解决IE9不支持html5的placeholder属性的问题 -->
+                    <p has-placeholder ng-show="!loginForm.username.$viewValue">手机号或邮箱</p>
                     <!-- 错误信息 -->
-                    <div class="messages" ng-show="login.username.showError || login.username.showRemoteError" ng-messages="loginForm.username.$error">
+                    <div class="messages" ng-show="login.username.showError" ng-messages="loginForm.username.$error">
                         <div ng-messages-include src="pages/login/templates/signin/username-messages.html"></div>
                     </div>
                 </div>
@@ -52,26 +48,29 @@
                 <label></label>
                 <div class="cell">
                     <input  type="password"
-                            placeholder="密码"
                             name="password"
-                            ng-focus="login.password.showError = false;"
+                            placeholder="密码"
+                            ng-focus="login.password.beFocused()"
                             ng-model="login.password.value"
                             ng-minlength="6"
                             ng-maxlength="16"
-                            is-focused="login.password.isFocused"
-                            required set-focus/>
+                            required
+                            set-focus
+                            is-focused="login.password.isFocused"/>
+                    <!-- 解决IE9不支持html5的placeholder属性的问题 -->
+                    <p has-placeholder ng-show="!loginForm.password.$viewValue">密码</p>
                     <!-- 错误信息 -->
-					<div class="messages" ng-show="login.password.showError" ng-messages="loginForm.password.$error">
-						<div ng-messages-include src="pages/login/templates/signin/password-messages.html"></div>
-					</div>
-				</div>
-			</div>
-			<!-- 提交按钮 -->
-			<button type="submit">登录</button>
-		</form>
+                    <div class="messages" ng-show="login.password.showError" ng-messages="loginForm.password.$error">
+                        <div ng-messages-include src="pages/login/templates/signin/password-messages.html"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- 提交按钮 -->
+            <button type="submit">登录</button>
+        </form>
 
         <!-- 注册表单 -->
-        <form name="registerForm" autocomplete="off" novalidate ng-show="!status.login" ng-submit="submitRegisterForm(registerForm);">
+        <form name="registerForm" autocomplete="off" novalidate ng-show="!formChanger.login" ng-submit="register.submitted(registerForm)">
             <!-- 账号输入框 -->
             <div class="username">
                 <!-- 标志用户输入框的图片 -->
@@ -80,12 +79,14 @@
                     <input  type="email"
                             placeholder="手机号或邮箱"
                             name="username"
-                            ng-focus="register.username.showError = false; register.username.showRemoteError = false;"
+                            ng-focus="register.username.beFocused();"
                             ng-model="register.username.value"
                             ng-pattern="/^1[34578]\d{9}$/"
                             required />
+                    <!-- 解决IE9不支持html5的placeholder属性的问题 -->
+                    <p has-placeholder ng-show="!registerForm.username.$viewValue">手机号或邮箱</p>
                     <!-- 错误信息 -->
-                    <div class="messages" ng-show="register.username.showError || register.username.showRemoteError" ng-messages="registerForm.username.$error">
+                    <div class="messages" ng-show="register.username.showError" ng-messages="registerForm.username.$error">
                         <div ng-messages-include src="pages/login/templates/signup/username-messages.html"></div>
                     </div>
                 </div>
@@ -98,11 +99,13 @@
                     <input  type="password"
                             placeholder="密码（不少于6位）"
                             name="password"
-                            ng-focus="register.password.showError = false;"
+                            ng-focus="register.password.beFocused()"
                             ng-model="register.password.value"
                             ng-minlength="6"
                             ng-maxlength="16"
                             required />
+                    <!-- 解决IE9不支持html5的placeholder属性的问题 -->
+                    <p has-placeholder ng-show="!registerForm.password.$viewValue">密码（不少于6位）</p>
                     <!-- 错误信息 -->
                     <div class="messages" ng-show="register.password.showError" ng-messages="registerForm.password.$error">
                         <div ng-messages-include src="pages/login/templates/signup/password-messages.html"></div>
@@ -117,11 +120,13 @@
                     <input  type="password"
                             placeholder="确认密码"
                             name="password2"
-                            ng-focus="register.password2.showError = false;"
+                            ng-focus="register.password2.beFocused()"
                             ng-model="register.password2.value"
                             ng-minlength="6"
                             ng-maxlength="16"
                             required />
+                    <!-- 解决IE9不支持html5的placeholder属性的问题 -->
+                    <p has-placeholder ng-show="!registerForm.password2.$viewValue">确认密码</p>
                     <!-- 错误信息 -->
                     <div class="messages" ng-show="register.password2.showError" ng-messages="registerForm.password2.$error">
                         <div ng-messages-include src="pages/login/templates/signup/password2-messages.html"></div>
@@ -129,8 +134,38 @@
                 </div>
             </div>
             <!-- 提交按钮 -->
-            <button type="submit">注册</button>
+            <button type="submit" ng-hide="formChanger.registerPopup">注册</button>
         </form>
+    </div>
 
-	</div>
+    <!-- 弹出层 -->
+    <div class="popup" ng-show="formChanger.registerPopup">
+        <div ng-click="registerPopup.esc()"></div>
+        <h1>验证手机</h1>
+        <p>请输入您收到的6位短信验证码</p>
+        <form name="registerPopupForm" autocomplete="off" novalidate ng-submit="registerPopup.submitted(registerPopupForm)">
+            <div class="input-wrap">
+                <!-- 手机号码 -->
+                <input type="text" ng-model="register.username.value" disabled="disabled"/>
+            </div>
+            <div class="input-wrap">
+                <!-- 验证码输入框 -->
+                <input type="text" name="code" ng-model="registerPopup.code" ng-focus="registerPopup.codeInputBeFocused()" is-focused="registerPopup.isFocused" set-focus maxlength="6"/>
+                <!-- 错误信息 -->
+                <label ng-show="registerPopup.showError">验证码填写错误</label>
+                <!-- 该div点击后会被隐藏 -->
+                <div class="send-mes-btn" ng-click="registerPopup.startCountDown()" ng-hide="registerPopup.countting">获取短信验证码</div>
+                <!-- 点击div.send-mes-btn后显示, 开启倒计时 -->
+                <div class="timer" ng-show="registerPopup.countting">
+                    <span ng-bind="registerPopup.seconds"></span>秒后重发
+                </div>
+            </div>
+            <div>
+                <button type="submit"
+                        ng-class="{ 'disabled': !registerPopup.gettedMes }"
+                        ng-disabled="!registerPopup.gettedMes"
+                        title="请先获取短信验证码">进入支路</button>
+            </div>
+        </form>
+    </div>
 </div>

@@ -1,1 +1,1 @@
-@media screen and (max-width: 768px){.login-wrap .main{width:80%}}
+@media screen and (max-width: 768px){.login-wrap .main{width:65%}.login-wrap .popup{width:65%}}@media screen and (max-width: 568px){.login-wrap .main{width:80%}.login-wrap .username .cell,.login-wrap .password .cell{padding-left:40px}.login-wrap .popup{width:80%}}@media screen and (max-width: 450px){.login-wrap .popup form div.input-wrap label{top:40px;left:18px}}

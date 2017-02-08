@@ -12,13 +12,14 @@ var myApp = angular.module("myApp", ['oc.lazyLoad', 'ui.router',
 myApp.config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
     $ocLazyLoadProvider.config({
         // $ocLazyLoad returns a promise that will be rejected when there is an error but if you set debug to true, $ocLazyLoad will also log all errors to the console.
-        debug: true,
+        // debug: true,
         // $ocLazyLoad can broadcast an event when you load a module, a component or a file (js/css/template). It is disabled by default, set events to true to activate it. The events are ocLazyLoad.moduleLoaded, ocLazyLoad.moduleReloaded, ocLazyLoad.componentLoaded, ocLazyLoad.fileLoaded
         events: false,
         modules: [
             {
                 name: 'loginModule',
                 files: ['pages/login/js/login-controller.js',
+                        'pages/login/js/login-directive.js',
                         'pages/login/css/style.css',
                         'pages/login/css/res.css']
             },
