@@ -1,4 +1,5 @@
-angular.module('branchCtrls', [])
+angular.module('myApp.controllers', [])
+
 .controller('loginCtrl', ['$scope', '$location', '$http', '$interval', function ($scope, $location, $http, $interval) {
 
 
@@ -16,17 +17,15 @@ angular.module('branchCtrls', [])
         *  文本按钮被点击后执行的动作
         *  切换到对应表单， 清楚切换前表单显示的错误信息
         */
-        textbtnBeClicked : function () {
+        beClicked : function () {
             if (this.login) {
                 // 若当前视图处于登录表单，切换前表单为注册表单
                 var self = $scope.register;
                 self.password2.showError = false;
-                this.login = false;
                 $scope.login.password.isFocused = false;
             } else {
                 // 若当前视图处于注册表单，切换前表单为登录表单
                 var self = $scope.login;
-                this.login = true;
             }
             // 清楚显示的错误信息
             self.username.showError = false;
@@ -59,7 +58,6 @@ angular.module('branchCtrls', [])
             this.login = true;
         }
     };
-
 
 
     /**
@@ -122,10 +120,12 @@ angular.module('branchCtrls', [])
                     this.password2.showError = !this.password2.valid;
                 }
             } else {
-
                 /**
                 *  注册表单弹出层  this == $scope.registerPopup
                 */
+                this.code.valid = !form.code.$error.pattern &&
+                                !form.code.$error.required;
+                this.code.showError = !this.code.valid;
             }
         },
         /**
@@ -185,28 +185,33 @@ angular.module('branchCtrls', [])
                     });
                 }
             } else {
-                /**
-                *  注册表单弹出层  self == $scope.registerPopup
-                */
-                // 发送请求
-                $http({
-                    method: 'post',
-                    url: url,
-                    params: {
-                        'username': $scope.register.username.value,
-                        'password': $scope.register.password.value,
-                        'code': self.code
-                    }
-                }).success( function(data) {
-                    console.log(data);
-                    // 短信验证码输入框的有效性 = 对应正确
-                    self.valid = data.status;
-                    // 若有错误则显示
-                    self.showError = !data.status;
+                if (this.code.valid) {
+                    /**
+                    *  注册表单弹出层  self == $scope.registerPopup
+                    */
+                    // 发送请求
+                    $http({
+                        method: 'post',
+                        url: url,
+                        params: {
+                            'username': $scope.register.username.value,
+                            'password': $scope.register.password.value,
+                            'code': self.code
+                        }
+                    }).success( function(data) {
 
-                    // 调用回调函数
-                    callback && callback.apply(self, []);
-                });
+                        // 短信验证码输入框的有效性 = 对应正确
+                        self.code.remoteValid = data.status;
+                        // 若有错误则显示
+                        self.code.showError = !data.status;
+                        // 整个表单的有效性
+                        self.valid = self.code.valid &&
+                                     self.code.remoteValid;
+
+                        // 调用回调函数
+                        callback && callback.apply(self, []);
+                    });
+                }
             }
         },
         /**
@@ -272,14 +277,11 @@ angular.module('branchCtrls', [])
 
                 // 回调函数操作
                 if (this.valid) {
-                    $location.url('/').replace();
+                    $location.url('/storylists').replace();
                 }
             }]);
         }
     };
-
-
-
 
 
     /**
@@ -339,8 +341,6 @@ angular.module('branchCtrls', [])
     };
 
 
-
-
     /**
     *  registerPopup对象记录了手机短信验证弹出层(registerPopup)的各种信息
        和数据的处理逻辑
@@ -349,38 +349,56 @@ angular.module('branchCtrls', [])
         // 是否已点击获取短信验证码的按钮
         gettedMes: false,
         countting: false,
-        // 验证码
-        code: "",
-        // 验证码有效性
-        valid: false,
-        // 显示错误信息
-        showError: false,
-        // 验证码输入框是否获得焦点
-        isFocused: false,
         // 倒计时的初始总秒数
         seconds: 60,
+        valid: false,
+        // 验证码输入框
+        code: {
+            value: "",
+            records: [],
+            // 验证码有效性
+            valid: false,
+            remoteValid: false,
+            // 显示错误信息
+            showError: false,
+            // 验证码输入框是否获得焦点
+            isFocused: false
+        },
         /**
         *  倒计时
         */
-        codeInputBeFocused: function () {
-            $scope.inputs.beFocused.apply(this, []);
+        codeBeFocused: function () {
+            $scope.inputs.beFocused.apply(this.code, []);
         },
         /**
         *  倒计时
         */
         esc: function () {
             $scope.formChanger.registerPopup = false;
-            this.isFocused = false;
+            this.code.isFocused = false;
         },
         /**
         *  倒计时
         */
         startCountDown: function () {
+
+            // 发送请求获取验证码
+            $http({
+                method: 'post',
+                url: "php/login/get_code.php",
+                params: {
+                    'username': $scope.register.username.value
+                }
+            }).success( function(data) {
+                // 获取验证码
+                // this.code.records[data.username] = data.code;
+            });
+
             // 显示xx秒后重发的div
             this.gettedMes = true;
             this.countting = true;
             // 验证码输入框获得焦点
-            this.isFocused = true;
+            this.code.isFocused = true;
             var self = this;
             var interval = $interval( function () {
                 if (self.seconds != 0) {
@@ -401,13 +419,12 @@ angular.module('branchCtrls', [])
         submitted: function (form) {
 
             // 表单校验
-            $scope.forms.validate.apply(this, [form, "/php/login/sendmes.php", function () {
+            $scope.forms.validate.apply(this, [form, "/php/login/validate_code.php", function () {
 
                 // 回调函数操作
                 if (this.valid) {
-                    $location.url('/').replace();
+                    $location.url('/storylists').replace();
                 } else {
-                    console.log('test');
                 }
             }]);
         }

@@ -1,22 +1,8 @@
 @import "../../../public-resource/scss/variables";
 @import "../../../public-resource/scss/mixins";
 .login-wrap {
-    span {
-        color: #757275;
-    }
 
-    .checked {
-        color: #399;
-    }
-
-    .disabled {
-        background-color: #aaa;
-        &:hover {
-            background-color: #aaa;
-        }
-    }
-
-    button {
+    button[type="submit"] {
         color: white;
         border: none;
         background-color: #399;
@@ -43,13 +29,13 @@
         }
     }
 
-    .bg-opacity {
-        @include prefix(opacity, 0.3);
-    }
 
     .main {
         width: 370px;
         margin: 110px auto 0;
+        &.bg-opacity {
+            @include prefix(opacity, 0.3);
+        }
         h1 {
             padding: 0 0 40px 6px;
             color: #399;
@@ -58,23 +44,24 @@
             text-align: center;
             border-bottom: 1px solid #399;
         }
-        .text-btn {
+        .form-changer {
             margin: 1px 0 20px;
-            text-align: center;
             font-size: 0;
-            span {
-                display: inline-block;
-                height: 45px;
+            button {
+                margin-top: 1.5px;
+                @include w-h(50%, 42px);
+                color: #757275;
                 font-size: 23px;
-                line-height: 45px;
+                line-height: 42px;
+                text-align: center;
                 letter-spacing: 5px;
-                cursor: pointer;
-                &:first-child {
-                    padding-right: 15%;
-                    border-right: 1px solid #399;
+                border: 0;
+                background-color: white;
+                &.clicked {
+                    color: #399;
                 }
-                &:last-child {
-                    padding-left: 15%;
+                &:first-child {
+                    border-right: 1px solid #399;
                 }
             }
         }
@@ -98,52 +85,73 @@
             font-size: 22px;
             letter-spacing: 6px;
         }
-    }
-
-    .username, .password {
-        .cell {
-            position: relative;
-            width: 100%;
-            padding-left: 50px;
-            p {
-                position: absolute;
-                top: 16px;
-                margin-left: 16px;
-                color: #A9A9A9;
-                font-size: 15px;
+        .username, .password {
+            .cell {
+                position: relative;
+                width: 100%;
+                padding-left: 50px;
+                p {
+                    position: absolute;
+                    top: 16px;
+                    margin-left: 16px;
+                    color: #d1d1d1;
+                    font-size: 15px;
+                }
+            }
+            >label {
+                width: 30px;
+                height: 50px;
+                float: left;
             }
         }
-        >label {
-            width: 30px;
-            height: 50px;
-            float: left;
+
+
+        .username>label {
+            background: url("../../../public-resource/images/username.jpg") no-repeat center;
+        }
+
+        .password {
+            margin: 25px 0;
+            >label {
+                background: url("../images/password.jpg") no-repeat center;
+            }
+        }
+
+
+        .messages {
+            font-size: 14px;
+            color : red;
+            z-index: 1;
+            cursor: text;
+            span {
+                color: black;
+                cursor: pointer;
+            }
+        }
+
+        .fade {
+            @include prefix(transition, 0.3s linear all);
+            @include position(absolute, top, 17px, right, 20px);
+            @include prefix(opacity, 1);
+        }
+        .fade.ng-enter {
+            @include prefix(opacity, 0);
+            right: 0;
+        }
+        .fade.ng-enter.ng-enter-active {
+            @include prefix(opacity, 1);
+            right: 20px;
+        }
+        .fade.ng-leave {
+            @include prefix(opacity, 1);
+            right: 20px;
+        }
+        .fade.ng-leave.ng-leave-active {
+            @include prefix(opacity, 0);
+            right: 0;
         }
     }
 
-
-    .username>label {
-        background: url("../../../public-resource/images/username.jpg") no-repeat center;
-    }
-
-    .password {
-        margin: 25px 0;
-        >label {
-            background: url("../images/password.jpg") no-repeat center;
-        }
-    }
-
-
-    .messages {
-        @include position(absolute, top, 17px, right, 20px);
-        font-size: 14px;
-        color : red;
-        z-index: 1;
-        cursor: text;
-        span {
-            color: black;
-            cursor: pointer;
-        }
-    }
 
     .popup {
         position: relative;
@@ -153,21 +161,22 @@
         border-radius: 10px;
         box-shadow: 0 0 10px 5px #dfdfdf;
         background-color: white;
-        >div {
+        div.esc {
             @include w-h(16px, 16px);
             @include position(absolute, top, 15px, right, 15px);
             background: url("../images/esc.png") no-repeat center center;
             cursor: pointer;
         }
-        h1, p {
+        >h1, >p {
+            width: 100%;
             text-align: center;
         }
-        h1 {
-            margin: 25px 0;
+        >h1 {
+            margin: 18px 0 25px 0;
             font-size: 16px;
             font-weight: 900;
         }
-        p {
+        >p {
             padding-bottom: 20px;
             font-size: 12px;
             border-bottom: 1px solid #bbb;
@@ -184,14 +193,43 @@
                     font-size: 14px;
                     background-color: white;
                 }
-                label {
+                p {
                     position: absolute;
-                    left: 30%;
+                    top: 16px;
+                    margin-left: 18px;
+                    color: #d1d1d1;
+                    font-size: 14px;
+                }
+                .messages {
+                    position: absolute;
+                    left: 37%;
                     color: #E34F1E;
                     font-size: 15px;
                     font-weight: 500;
                     line-height: 50px;
                     z-index: 1;
+                }
+                .fade {
+                    @include prefix(transition, 0.3s linear all);
+                    @include prefix(opacity, 1);
+                    position: absolute;
+                    left: 37%;
+                }
+                .fade.ng-enter {
+                    @include prefix(opacity, 0);
+                    left: 40%;
+                }
+                .fade.ng-enter.ng-enter-active {
+                    @include prefix(opacity, 1);
+                    left: 37%;
+                }
+                .fade.ng-leave {
+                    @include prefix(opacity, 1);
+                    left: 37%;
+                }
+                .fade.ng-leave.ng-leave-active {
+                    @include prefix(opacity, 0);
+                    left: 40%;
                 }
                 .send-mes-btn, .timer {
                     width: 120px;
@@ -221,8 +259,16 @@
                     margin-left: -63px;
                     font-size: 20px;
                     border-radius: 5px;
+                    &.disabled {
+                        background-color: #aaa;
+                        &:hover {
+                            background-color: #aaa;
+                        }
+                    }
                 }
             }
         }
     }
 }
+
+

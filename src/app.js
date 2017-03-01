@@ -5,21 +5,21 @@
 */
 
 var myApp = angular.module("myApp", ['oc.lazyLoad', 'ui.router',
-            'branchCtrls', 'branchDirectives', 'branchServices',
-            'ngMessages', 'ngAnimate', 'ngRoute']);
+            'myApp.controllers', 'myApp.directives', 'myApp.services',
+            'ngMessages', 'ngAnimate', 'ngRoute', 'infinite-scroll']);
 
 // 动态加载控制器
-myApp.config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
+myApp.config(['$ocLazyLoadProvider', function ($ocLazyLoadProvider) {
     $ocLazyLoadProvider.config({
         // $ocLazyLoad returns a promise that will be rejected when there is an error but if you set debug to true, $ocLazyLoad will also log all errors to the console.
-        // debug: true,
+        debug: true,
         // $ocLazyLoad can broadcast an event when you load a module, a component or a file (js/css/template). It is disabled by default, set events to true to activate it. The events are ocLazyLoad.moduleLoaded, ocLazyLoad.moduleReloaded, ocLazyLoad.componentLoaded, ocLazyLoad.fileLoaded
         events: false,
         modules: [
             {
                 name: 'loginModule',
-                files: ['pages/login/js/login-controller.js',
-                        'pages/login/js/login-directive.js',
+                files: ['pages/login/js/controller.js',
+                        'pages/login/js/directive.js',
                         'pages/login/css/style.css',
                         'pages/login/css/res.css']
             },
@@ -31,17 +31,20 @@ myApp.config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
             },
             {
                 name: 'storylistsModule',
-                files: ['pages/storylists/js/storylists-controller.js',
+                files: ['pages/storylists/js/controller.js',
+                        'pages/storylists/js/directive.js',
+                        'components/search-box/js/search-box.js',
                         'components/search-box/css/style.css',
                         'pages/storylists/css/style.css',
                         'pages/storylists/css/res.css']
             },
             {
                 name: 'readingModule',
-                files: ['pages/Storylists/reading/js/reading-controller.js',
+                files: ['pages/reading/js/reading-controller.js',
+                        'components/search-box/js/search-box.js',
                         'components/search-box/css/style.css',
-                        'pages/storylists/reading/css/style.css',
-                        'pages/storylists/reading/css/res.css']
+                        'pages/reading/css/style.css',
+                        'pages/reading/css/res.css']
             },
             {
                 name: 'writingModule',
@@ -70,6 +73,14 @@ myApp.config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
         ],
     });
 }]);
+
+myApp.config(['$locationProvider', '$urlMatcherFactoryProvider', function ($locationProvider, $urlMatcherFactoryProvider) {
+    $locationProvider.html5Mode({
+        enabled: false,
+        requireBase: false
+    });
+}]);
+
 
 myApp.config(['$stateProvider', '$urlRouterProvider',
     function ($stateProvider, $urlRouterProvider) {
@@ -111,7 +122,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
             views: {
                 "body@content": {
                     templateUrl: 'pages/storylists/storylists.html',
-                    controller: 'storylistsCtrl',
+                    controller: 'storylistsCtrl'
                 }
             },
             resolve: {
@@ -124,8 +135,8 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
             url: 'reading',
             views: {
                 "body@content": {
-                    templateUrl: 'pages/storylists/reading/reading.html',
-                    controller: 'readingCtrl',
+                    templateUrl: 'pages/reading/reading.html',
+                    controller: 'readingCtrl'
                 }
             },
             resolve: {
@@ -139,7 +150,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
             views: {
                 "body@content": {
                     templateUrl: 'pages/writing/writing.html',
-                    controller: 'writingCtrl',
+                    controller: 'writingCtrl'
                 }
             },
             resolve: {
@@ -153,7 +164,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
             views: {
                 "body@content": {
                     templateUrl: 'pages/track/track.html',
-                    controller: 'trackCtrl',
+                    controller: 'trackCtrl'
                 }
             },
             resolve: {
@@ -167,7 +178,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
             views: {
                 "body@content": {
                     templateUrl: 'pages/collection/collection.html',
-                    controller: 'collectionCtrl',
+                    controller: 'collectionCtrl'
                 }
             },
             resolve: {
@@ -181,13 +192,45 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
             views: {
                 "body@content": {
                     templateUrl: 'pages/setting/setting.html',
-                    controller: 'settingCtrl',
+                    controller: 'settingCtrl'
+                },
+                "body@content.setting": {
+                    templateUrl: 'pages/setting/templates/basic.html'
                 }
             },
             resolve: {
                 loadSettingModule: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load('settingModule');
                 }]
+            }
+        })
+        .state('content.setting.basic', {
+            url: '',
+            views: {
+                "body@content.setting": {
+                    templateUrl: 'pages/setting/templates/basic.html'
+                }
+            }
+        }).state('content.setting.data', {
+            url: '',
+            views: {
+                "body@content.setting": {
+                    templateUrl: 'pages/setting/templates/data.html'
+                }
+            }
+        }).state('content.setting.password', {
+            url: '',
+            views: {
+                "body@content.setting": {
+                    templateUrl: 'pages/setting/templates/password.html'
+                }
+            }
+        }).state('content.setting.account', {
+            url: '',
+            views: {
+                "body@content.setting": {
+                    templateUrl: 'pages/setting/templates/account.html'
+                }
             }
         });
     }

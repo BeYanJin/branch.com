@@ -15,6 +15,21 @@
         width: 100%;
         border-bottom: 1px solid #BBB;
     }
+
+    .flow {
+        @include prefix(transition, 0.5s linear all);
+    }
+    .flow.ng-enter-stagger {
+        @include prefix(transition-delay, 0.25s);
+        @include prefix(transition-duration, 0s);
+    }
+    .flow.ng-enter {
+        @include prefix(opacity, 0);
+    }
+    .flow.ng-enter.ng-enter-active {
+        @include prefix(opacity, 1);
+    }
+
     .cell-wrap {
         padding: 20px 0 20px 0;
         overflow: hidden;

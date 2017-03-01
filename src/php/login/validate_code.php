@@ -16,6 +16,6 @@
     // 若$status为 true，则赋值为 验证码填写正确
 
     // 输出结果
-    echo json_encode(array('status'=>false, 'result'=>'验证码填写错误'));
-    // echo json_encode(array('status'=>true, 'result'=>'验证码填写正确'));
+    // echo json_encode(array('status'=>false, 'result'=>'验证码填写错误'));
+    echo json_encode(array('status'=>true, 'result'=>'验证码填写正确'));
 ?>

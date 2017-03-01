@@ -1,1 +1,1 @@
-var branchFilters = angular.module('branchFilters', []);
+angular.module('myApp.filters', []);

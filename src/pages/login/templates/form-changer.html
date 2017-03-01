@@ -1,0 +1,9 @@
+<!-- 登录与注册按钮 -->
+<div class="form-changer">
+    <button ng-click="formChanger.login = true;
+                    formChanger.beClicked();"
+          ng-class="{ 'clicked': formChanger.login }">登录</button>
+    <button ng-click="formChanger.login = false;
+                    formChanger.beClicked();"
+          ng-class="{ 'clicked': !formChanger.login }">注册</button>
+</div>

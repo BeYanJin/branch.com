@@ -1,7 +1,7 @@
-var branchServices = angular.module('branchServices', []);
+angular.module('myApp.services', [])
 
 // 文件读取（promise封装）
-branchServices.factory('fileReaderService', ["$q", "$log", function ($q, $log) {
+.factory('fileReaderService', ["$q", "$log", function ($q, $log) {
     var onLoad = function (reader, deferred, scope) {
         return function () {
             scope.$apply( function () {
@@ -35,11 +35,11 @@ branchServices.factory('fileReaderService', ["$q", "$log", function ($q, $log) {
     return {
         readAsDataURL: readAsDataURL
     };
-}]);
+}])
 
 
 // User model service
-branchServices.factory('User', ['$http', function ($http) {
+.factory('User', ['$http', function ($http) {
     function User () {
 
     };
@@ -59,11 +59,11 @@ branchServices.factory('User', ['$http', function ($http) {
         }
     };
     return User;
-}]);
+}])
 
 
 // Article model service
-branchServices.factory('Article', ['$http', function ($http) {
+.factory('Article', ['$http', function ($http) {
     function Article () {
 
     };

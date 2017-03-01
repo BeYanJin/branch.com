@@ -1,7 +1,7 @@
-var branchDirectives = angular.module('branchDirectives', []);
+angular.module('myApp.directives', [])
 
 // 文件上传的指令
-branchDirectives.directive('fileModel', ['$parse', function ($parse) {
+.directive('fileModel', ['$parse', function ($parse) {
     return {
         restrict: 'EA',
         link: function (scope, element, attrs, ngModel) {
@@ -15,6 +15,18 @@ branchDirectives.directive('fileModel', ['$parse', function ($parse) {
                 scope.file = (event.srcElement || event.target).files[0];
                 scope.readFile();
             });
+        }
+    };
+}])
+// 检测浏览器是否支持html5的placeholder属性
+.directive('hasPlaceholder', [ function () {
+    return {
+        restrict: 'EA',
+        link: function (scope, element, attrs) {
+            var input = document.createElement('input');
+            if ("placeholder" in input) {
+                element.remove();
+            }
         }
     };
 }]);

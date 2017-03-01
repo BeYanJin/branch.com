@@ -5,16 +5,25 @@
 			<div>
 				<h1>我的设置</h1>
 			</div>
-			<div>
-				<ul>
-					<li><a href="">基础设置</a></li>
-					<li><a href="">个人资料</a></li>
-					<li><a href="">密码管理</a></li>
-					<li><a href="">账号管理</a></li>
-				</ul>
-			</div>
+			<ul>
+				<li>
+					<a class="selected" ui-sref="content.setting.basic">基础设置</a>
+				</li>
+				<li>
+					<a ui-sref="content.setting.data">个人资料</a>
+				</li>
+				<li>
+					<a ui-sref="content.setting.password">密码管理</a>
+				</li>
+				<li>
+					<a ui-sref="content.setting.account">账号管理</a>
+				</li>
+			</ul>
 		</div>
 	</header>
+
+	<div ui-view="body"></div>
+
 </div>
 
 

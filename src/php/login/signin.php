@@ -16,8 +16,8 @@
     // 若$status为 true，则赋值为 Ok
 
     // 输出结果
-    echo json_encode(array('status'=>false, 'result'=>'账户不存在'));
+    // echo json_encode(array('status'=>false, 'result'=>'账户不存在'));
     // echo json_encode(array('status'=>false, 'result'=>'用户名或密码错误'));
-    // echo json_encode(array('status'=>true, 'result'=>'Ok'));
+    echo json_encode(array('status'=>true, 'result'=>'Ok'));
 
 ?>

@@ -1,11 +1,14 @@
 @import "../../../public-resource/scss/variables";
 @import "../../../public-resource/scss/mixins";
+
 .setting-wrap {
     h1,h2 {
         font-weight: 500;
     }
 
     .header-wrap {
+        margin-bottom: 20px;
+        text-align: center;
         div:first-child {
             margin: 30px auto 45px;
             width: 120px;
@@ -18,11 +21,8 @@
             font-size: 22px;
             font-weight: 500;
         }
-        div:last-child {
-            text-align: center;
-            ul {
-                font-size: 0;
-            }
+        ul {
+            font-size: 0;
             li {
                 display: inline-block;
                 padding: 0 40px;
@@ -33,6 +33,56 @@
             a {
                 font-size: 18px;
                 color: #bbb;
+                &.selected {
+                    color: #399;
+                }
+            }
+        }
+    }
+
+    .basic-wrap {
+        form {
+            .cell {
+                width: 65%;
+                margin: 0 auto;
+                padding: 50px 0;
+                font-size: 0;
+                border-bottom: 1px solid #bbb;
+                label {
+                    float: left;
+                    width: 180px;
+                    margin: 0 35px;
+                    color: #101010;
+                    font-size: 15px;
+                }
+                .radio-wrap {
+                    margin-left: 250px;
+                    >div {
+                        width: 100%;
+                    }
+                }
+                .one-radio {
+                    margin-left: 35px;
+                    display: inline-block;
+                }
+                span {
+                    margin-left: 10px;
+                    color: #948F94;
+                    font-size: 14px;
+                }
+            }
+            .last-cell {
+                border-bottom: none;
+            }
+            div:last-child {
+                button {
+                    width: 50px;
+                    color: white;
+                    background-color: #399;
+                    border-radius: 5px;
+                    border: 0;
+                    outline: 0;
+                }
             }
         }
     }

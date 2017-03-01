@@ -29,5 +29,12 @@
             @include prefix(box-sizing, border-box);
             border-radius: 5px;
         }
+        p {
+            position: absolute;
+            top: 9px;
+            left: 28px;
+            color: #D1D1D1;
+            font-size: 12px;
+        }
     }
 }

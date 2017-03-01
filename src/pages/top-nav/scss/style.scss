@@ -34,7 +34,7 @@
             li {
                 float: left;
                 line-height: $navHeight;
-                + li + li {
+                &:last-child {
                     a { border-right: none; }
                 }
                 a {
@@ -67,7 +67,7 @@
             text-align: center;
             line-height: 50px;
             border-bottom: 1px solid white;
-            + li + li + li {
+            &:last-child {
                 border-bottom: none;
             }
         }

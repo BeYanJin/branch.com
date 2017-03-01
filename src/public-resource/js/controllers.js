@@ -1,1 +1,1 @@
-var branchCtrls = angular.module('branchCtrls', []);
+angular.module('myApp.controllers', []);

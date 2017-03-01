@@ -1,0 +1,67 @@
+<!-- 注册表单 -->
+<form name="registerForm" autocomplete="off" novalidate ng-submit="register.submitted(registerForm)">
+    <!-- 账号输入框 -->
+    <div class="username">
+        <!-- 标志用户输入框的图片 -->
+        <label></label>
+        <div class="cell">
+            <input  type="email"
+                    placeholder="手机号或邮箱"
+                    name="username"
+                    ng-focus="register.username.beFocused();"
+                    ng-model="register.username.value"
+                    ng-pattern="/^1[34578]\d{9}$/"
+                    required />
+            <!-- 解决IE9不支持html5的placeholder属性的问题 -->
+            <p has-placeholder ng-show="!registerForm.username.$viewValue">手机号或邮箱</p>
+            <!-- 错误信息 -->
+            <div class="messages fade" ng-if="register.username.showError" ng-messages="registerForm.username.$error">
+                <div ng-messages-include src="pages/login/templates/messages/register-form/username.html"></div>
+            </div>
+        </div>
+    </div>
+    <!-- 密码输入框 -->
+    <div class="password">
+        <!-- 标志密码输入框的图片 -->
+        <label></label>
+        <div class="cell">
+            <input  type="password"
+                    placeholder="密码（不少于6位）"
+                    name="password"
+                    ng-focus="register.password.beFocused()"
+                    ng-model="register.password.value"
+                    ng-minlength="6"
+                    ng-maxlength="16"
+                    required />
+            <!-- 解决IE9不支持html5的placeholder属性的问题 -->
+            <p has-placeholder ng-show="!registerForm.password.$viewValue">密码（不少于6位）</p>
+            <!-- 错误信息 -->
+            <div class="messages fade" ng-if="register.password.showError" ng-messages="registerForm.password.$error">
+                <div ng-messages-include src="pages/login/templates/messages/register-form/password.html"></div>
+            </div>
+        </div>
+    </div>
+    <!-- 确认密码输入框 -->
+    <div class="password">
+        <!-- 标志密码输入框的图片 -->
+        <label></label>
+        <div class="cell">
+            <input  type="password"
+                    placeholder="确认密码"
+                    name="password2"
+                    ng-focus="register.password2.beFocused()"
+                    ng-model="register.password2.value"
+                    ng-minlength="6"
+                    ng-maxlength="16"
+                    required />
+            <!-- 解决IE9不支持html5的placeholder属性的问题 -->
+            <p has-placeholder ng-show="!registerForm.password2.$viewValue">确认密码</p>
+            <!-- 错误信息 -->
+            <div class="messages fade" ng-if="register.password2.showError" ng-messages="registerForm.password2.$error">
+                <div ng-messages-include src="pages/login/templates/messages/register-form/password2.html"></div>
+            </div>
+        </div>
+    </div>
+    <!-- 提交按钮 -->
+    <button type="submit" ng-hide="formChanger.registerPopup">注册</button>
+</form>

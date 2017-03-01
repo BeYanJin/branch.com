@@ -1,0 +1,52 @@
+<!-- 弹出层 -->
+<div class="popup">
+
+    <div class="esc" ng-click="registerPopup.esc()"></div>
+
+    <h1>验证手机</h1>
+
+    <p>请输入您收到的6位短信验证码</p>
+
+    <form name="registerPopupForm" autocomplete="off" novalidate ng-submit="registerPopup.submitted(registerPopupForm)">
+
+        <div class="input-wrap">
+            <!-- 手机号码 -->
+            <input type="text" disabled="disabled"
+                    ng-model="register.username.value" />
+        </div>
+
+        <div class="input-wrap">
+            <!-- 验证码输入框 -->
+            <input type="text"
+                    placeholder="验证码"
+                    name="code"
+                    ng-model="registerPopup.code.value"
+                    ng-focus="registerPopup.codeBeFocused()"
+                    ng-pattern="/^\d{6}$/"
+                    is-focused="registerPopup.code.isFocused" set-focus
+                    maxlength="6"
+                    required />
+            <!-- 解决IE9不支持html5的placeholder属性的问题 -->
+            <p has-placeholder ng-show="!registerPopupForm.code.$viewValue">验证码</p>
+            <!-- 错误信息 -->
+            <div class="messages fade" ng-if="registerPopup.code.showError" ng-messages="registerPopupForm.code.$error">
+                <div ng-messages-include src="pages/login/templates/messages/register-popup-form/code.html"></div>
+            </div>
+            <!-- 该div点击后会被隐藏 -->
+            <div class="send-mes-btn" ng-click="registerPopup.startCountDown()" ng-hide="registerPopup.countting">获取短信验证码</div>
+            <!-- 点击div.send-mes-btn后显示, 开启倒计时 -->
+            <div class="timer" ng-show="registerPopup.countting">
+                <span ng-bind="registerPopup.seconds"></span>秒后重发
+            </div>
+        </div>
+
+        <div>
+            <button type="submit"
+                    ng-class="{ 'disabled': !registerPopup.gettedMes }"
+                    ng-disabled="!registerPopup.gettedMes"
+                    title="请先获取短信验证码">进入支路</button>
+        </div>
+
+    </form>
+
+</div>

@@ -1,6 +1,14 @@
-angular.module('branchCtrls', [])
+angular.module('myApp.controllers', [])
+
 .controller('storylistsCtrl', ['$scope', '$http', function ($scope, $http) {
-    $http.post("stores/json/story.json")
+
+
+    $scope.load = function () {
+        console.log("到底了，加载更多数据吧！");
+    }
+
+
+    $http.get("stores/json/story.json")
         .success( function (data) {
             data.stories.forEach( function(element, index) {
                 element.pic = "public-resource/images/" + element.pic;
