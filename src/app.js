@@ -12,63 +12,76 @@ var myApp = angular.module("myApp", ['oc.lazyLoad', 'ui.router',
 myApp.config(['$ocLazyLoadProvider', function ($ocLazyLoadProvider) {
     $ocLazyLoadProvider.config({
         // $ocLazyLoad returns a promise that will be rejected when there is an error but if you set debug to true, $ocLazyLoad will also log all errors to the console.
-        debug: true,
+        debug: false,
         // $ocLazyLoad can broadcast an event when you load a module, a component or a file (js/css/template). It is disabled by default, set events to true to activate it. The events are ocLazyLoad.moduleLoaded, ocLazyLoad.moduleReloaded, ocLazyLoad.componentLoaded, ocLazyLoad.fileLoaded
         events: false,
         modules: [
             {
                 name: 'loginModule',
-                files: ['pages/login/js/controller.js',
-                        'pages/login/js/directive.js',
-                        'pages/login/css/style.css',
-                        'pages/login/css/res.css']
+                files: ['scripts/controllers/login/controller.js',
+                        'scripts/directives/login/directive.js',
+                        'styles/css/login/style.css',
+                        'styles/css/login/res.css']
             },
             {
                 name: 'navModule',
-                files: ['pages/top-nav/js/top-nav-controller.js',
-                        'pages/top-nav/css/style.css',
-                        'pages/top-nav/css/res.css']
+                files: ['scripts/controllers/top-nav/controller.js',
+                        'scripts/directives/top-nav/directive.js',
+                        'styles/css/top-nav/style.css',
+                        'styles/css/top-nav/res.css']
             },
             {
                 name: 'storylistsModule',
-                files: ['pages/storylists/js/controller.js',
-                        'pages/storylists/js/directive.js',
-                        'components/search-box/js/search-box.js',
-                        'components/search-box/css/style.css',
-                        'pages/storylists/css/style.css',
-                        'pages/storylists/css/res.css']
+                files: ['scripts/controllers/storylists/controller.js',
+                        'scripts/directives/storylists/directive.js',
+                        'scripts/directives/search-box/directive.js',
+                        'styles/css/search-box/style.css',
+                        'styles/css/storylists/style.css',
+                        'styles/css/storylists/res.css']
             },
             {
                 name: 'readingModule',
-                files: ['pages/reading/js/reading-controller.js',
-                        'components/search-box/js/search-box.js',
-                        'components/search-box/css/style.css',
-                        'pages/reading/css/style.css',
-                        'pages/reading/css/res.css']
+                files: ['scripts/controllers/reading/controller.js',
+                        'scripts/directives/reading/directive.js',
+                        'scripts/directives/search-box/directive.js',
+                        'styles/css/search-box/style.css',
+                        'styles/css/reading/style.css',
+                        'styles/css/reading/res.css']
             },
             {
                 name: 'writingModule',
-                files: ['pages/writing/js/writing-controller.js',
-                        'pages/writing/css/style.css',
-                        'pages/writing/css/res.css']
+                files: ['scripts/controllers/writing/controller.js',
+                        'scripts/directives/writing/directive.js',
+                        'styles/css/writing/style.css',
+                        'styles/css/writing/res.css']
             },
             {
                 name: 'trackModule',
-                files: ['pages/track/js/track-controller.js',
-                        'pages/track/css/style.css',
-                        'pages/track/css/res.css']
+                files: ['scripts/controllers/track/controller.js',
+                        'scripts/directives/track/directive.js',
+                        'styles/css/track/style.css',
+                        'styles/css/track/res.css']
             },
             {
                 name: 'collectionModule',
-                files: ['pages/collection/js/collection-controller.js',
-                        'pages/collection/css/style.css',
-                        'pages/collection/css/res.css']
+                files: ['scripts/controllers/collection/controller.js',
+                        'scripts/directives/collection/directive.js',
+                        'styles/css/collection/style.css',
+                        'styles/css/collection/res.css']
+            },
+            {
+                name: 'homeModule',
+                files: ['scripts/controllers/home/controller.js',
+                        'scripts/directives/home/directive.js',
+                        'styles/css/home/style.css',
+                        'styles/css/home/res.css']
             },
             {
                 name: 'settingModule',
-                files: ['pages/setting/js/setting-controller.js',
-                        'pages/setting/css/style.css',
-                        'pages/setting/css/res.css']
+                files: ['scripts/controllers/setting/controller.js',
+                        'scripts/directives/setting/directive.js',
+                        'styles/css/setting/style.css',
+                        'styles/css/setting/res.css']
             }
         ],
     });
@@ -89,7 +102,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         .state('login', {
             // 该视图会使用下面resolve方法加载的控制器
             url: '',
-            templateUrl: 'pages/login/login.html',
+            templateUrl: 'views/login.html',
             controller: 'loginCtrl',
             // 路由在“渲染”(render)之前会执行resolve对象中的这些方法(通常返回的都是promise对象）
             resolve: {
@@ -107,7 +120,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
                     templateUrl: 'layouts/content-layout.html'
                 },
                 "header@content": {
-                    templateUrl: 'pages/top-nav/top-nav.html',
+                    templateUrl: 'views/top-nav.html',
                     controller: 'navCtrl'
                 }
             },
@@ -121,7 +134,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
             url: 'storylists',
             views: {
                 "body@content": {
-                    templateUrl: 'pages/storylists/storylists.html',
+                    templateUrl: 'views/storylists.html',
                     controller: 'storylistsCtrl'
                 }
             },
@@ -135,7 +148,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
             url: 'reading',
             views: {
                 "body@content": {
-                    templateUrl: 'pages/reading/reading.html',
+                    templateUrl: 'views/reading.html',
                     controller: 'readingCtrl'
                 }
             },
@@ -149,7 +162,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
             url: 'writing',
             views: {
                 "body@content": {
-                    templateUrl: 'pages/writing/writing.html',
+                    templateUrl: 'views/writing.html',
                     controller: 'writingCtrl'
                 }
             },
@@ -163,7 +176,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
             url: 'track',
             views: {
                 "body@content": {
-                    templateUrl: 'pages/track/track.html',
+                    templateUrl: 'views/track.html',
                     controller: 'trackCtrl'
                 }
             },
@@ -177,7 +190,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
             url: 'collection',
             views: {
                 "body@content": {
-                    templateUrl: 'pages/collection/collection.html',
+                    templateUrl: 'views/collection.html',
                     controller: 'collectionCtrl'
                 }
             },
@@ -187,15 +200,29 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
                 }]
             }
         })
+        .state('content.home', {
+            url: 'home',
+            views: {
+                "body@content": {
+                    templateUrl: 'views/home.html',
+                    controller: 'homeCtrl'
+                }
+            },
+             resolve: {
+                loadHomeModule: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load('homeModule');
+                }]
+            }
+        })
         .state('content.setting', {
             url: 'setting',
             views: {
                 "body@content": {
-                    templateUrl: 'pages/setting/setting.html',
+                    templateUrl: 'views/setting.html',
                     controller: 'settingCtrl'
                 },
                 "body@content.setting": {
-                    templateUrl: 'pages/setting/templates/basic.html'
+                    templateUrl: 'templates/setting/password.html'
                 }
             },
             resolve: {
@@ -208,28 +235,28 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
             url: '',
             views: {
                 "body@content.setting": {
-                    templateUrl: 'pages/setting/templates/basic.html'
+                    templateUrl: 'templates/setting/basic.html'
                 }
             }
         }).state('content.setting.data', {
             url: '',
             views: {
                 "body@content.setting": {
-                    templateUrl: 'pages/setting/templates/data.html'
+                    templateUrl: 'templates/setting/data.html'
                 }
             }
         }).state('content.setting.password', {
             url: '',
             views: {
                 "body@content.setting": {
-                    templateUrl: 'pages/setting/templates/password.html'
+                    templateUrl: 'templates/setting/password.html'
                 }
             }
         }).state('content.setting.account', {
             url: '',
             views: {
                 "body@content.setting": {
-                    templateUrl: 'pages/setting/templates/account.html'
+                    templateUrl: 'templates/setting/account.html'
                 }
             }
         });

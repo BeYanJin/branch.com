@@ -1,0 +1,36 @@
+@import "../public-resource/variables";
+@import "../public-resource/mixins";
+
+@media screen and (max-width: 1200px) {
+    .storylists-wrap .section-wrap {
+        width: 70%;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .storylists-wrap {
+        .section-wrap {
+            width: 80%;
+        }
+        img {
+            @include w-h(300px, 150px);
+            margin: 6px 14px 5px 0;
+            float: left;
+        }
+    }
+}
+
+@media screen and (max-width: 568px) {
+    .storylists-wrap {
+        .section-wrap {
+            width: 100%;
+        }
+        .cell-wrap {
+            margin: 0 20px;
+        }
+        img {
+            @include w-h(200px, 120px);
+        }
+    }
+}

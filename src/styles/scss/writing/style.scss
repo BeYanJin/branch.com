@@ -1,0 +1,86 @@
+@import "../public-resource/variables";
+@import "../public-resource/mixins";
+
+.writing-wrap {
+    .main {
+        margin: auto;
+        width: $commonWide;
+        input[type="text"] {
+            @include w-h(65%, 40px);
+            height: 40px;
+            padding-left: 20px;
+            color: #666;
+            font-size: 15px;
+            background-color: #F0EEF0;
+            border: 0;
+            &:focus {
+                outline: 0;
+            }
+            border-radius: 5px;
+        }
+        span {
+            margin-right: 10px;
+            color: #399;
+            font-size: 22px;
+        }
+        .cell {
+            text-align: center;
+            &:first-child {
+                margin-top: 100px;
+                margin-top: 100px;
+            }
+            &:nth-child(2) {
+                margin-top: 15px;
+            }
+            button {
+                &:nth-child(3) {
+                    margin: 0 3px 0 5px;
+                }
+                color: #399;
+                font-size: 15px;
+                border: 1px solid #399;
+                border-radius: 6px;
+                padding: 7px 10px;
+                background-color: white;
+            }
+        }
+    }
+
+    input[type="file"] {
+        position: absolute;
+        @include w-h(100%, 100%);
+
+    }
+
+    .photo-area {
+        position: relative;
+        min-height: 300px;
+        max-height: 550px;
+        width: 90%;
+        height: auto;
+        margin: 40px auto 100px;
+        overflow: hidden;
+        background-color: #F0EEF0;
+        input[type='file'] {
+            @include position(absolute, top, 0, left, 0);
+            @include w-h(100%, 100%);
+            z-index: 9999;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            background-color: red;
+            cursor: pointer;
+        }
+        img {
+            @include position(relative, top, 0, left, 0);
+            @include w-h(100%, auto);
+            z-index: 1;
+        }
+        div {
+            @include position(absolute, top, 0, left, 0);
+            @include w-h(100%, 100%);
+            text-align: center;
+            z-index: 0;
+            background: url('../../../images/writing/add-photo.jpg') no-repeat center center;
+        }
+    }
+}

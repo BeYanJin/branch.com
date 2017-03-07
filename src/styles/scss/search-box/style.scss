@@ -1,0 +1,40 @@
+@import "../public-resource/variables";
+@import "../public-resource/mixins";
+
+.search-box-wrap {
+    .header-wrap {
+        width: $commonWide;
+        margin: 10px auto 50px;
+        form {
+            float: right;
+            position: relative;
+            @include w-h(225px, 33px);
+            background-color: #399;
+        }
+        input[type="image"] {
+            @include position(absolute, top, 6.5px, left, 7.5px);
+            @include w-h(20px, 20px);
+            z-index: 1;
+        }
+        input[type="text"] {
+            @include position(absolute, top, 6.5px, left, 7.5px);
+            @include w-h(210px, 20px);
+            padding-left: 20px;
+            font-size: 12px;
+            color: #888;
+            border: 0;
+            &:focus {
+                outline: 0;
+            }
+            @include prefix(box-sizing, border-box);
+            border-radius: 5px;
+        }
+        p {
+            position: absolute;
+            top: 9px;
+            left: 28px;
+            color: #D1D1D1;
+            font-size: 12px;
+        }
+    }
+}

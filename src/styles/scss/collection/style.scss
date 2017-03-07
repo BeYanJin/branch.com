@@ -1,0 +1,64 @@
+@import "../public-resource/variables";
+@import "../public-resource/mixins";
+
+.collection-wrap {
+    h1, h2 {
+        font-weight: 500;
+    }
+
+    .header-wrap {
+        margin: 30px auto 34px;
+        width: 125px;
+        text-align: right;
+        background: url('../../../images/collection/star.jpg') no-repeat left center;
+        h1 {
+            color: #44A1A1;
+            font-size: 22px;
+            font-weight: 500;
+        }
+    }
+
+    .section-wrap {
+        width: $commonWide;
+        margin: auto;
+    }
+
+    .cell {
+        width: 100%;
+        border-bottom: 1px solid #BBB;
+    }
+    .cell-wrap {
+        padding: 20px 0 20px 0;
+        overflow: hidden;
+    }
+    h1.atitle {
+        color: #399;
+        font-size: 19px;
+        line-height: 28px;
+    }
+    .content {
+        h2 {
+            color: #6AB5B5;
+            font-size: 15px;
+            text-indent: 1em;
+            margin: 6px 0 14px 0;
+            line-height: 26px;
+        }
+        p {
+            color: #666566;
+            font-size: 12px;
+            text-indent: 1em;
+        }
+        span {
+            margin-right: 10px;
+            font-size: 12px;
+        }
+    }
+
+    img {
+        @include w-h(100px, 100px);
+        float: right;
+        box-shadow: -2px 2px 5px gray;
+        margin: 5px 0 0 10px;
+    }
+}

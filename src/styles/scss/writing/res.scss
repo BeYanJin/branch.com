@@ -1,0 +1,32 @@
+@import "../public-resource/variables";
+@import "../public-resource/mixins";
+
+@media screen and (max-width: 1200px) {
+    .writing-wrap .main {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .writing-wrap .main { width: 80%; }
+}
+
+
+@media screen and (max-width: 768px) {
+    .writing-wrap .main {
+        width: 90%;
+        .cell span {
+            &:first-child { font-size: 20px; }
+        }
+        input[type="text"] {
+            @include w-h(78%, 35px);
+            font-size: 14px;
+        }
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .writing-wrap .main {
+        width: 95%;
+    }
+}
