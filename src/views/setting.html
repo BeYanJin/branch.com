@@ -5,32 +5,34 @@
 			<div>
 				<h1>我的设置</h1>
 			</div>
-			<ul>
-				<li class="col-xs-offset-0 col-sm-offset-2 col-md-offset-4 col-xs-6 col-sm-2 col-md-1">
-					<a ng-click="selectedMode = 1"
-						ng-class="{ selected : selectedMode == 1 }"
-						ui-sref="content.setting.basic">基础设置
-					</a>
-				</li>
-				<li class="col-xs-6 col-sm-2 col-md-1">
-					<a ng-click="selectedMode = 2"
-						ng-class="{ selected : selectedMode ==2 }"
-						ui-sref="content.setting.data">个人资料
-					</a>
-				</li>
-				<li class="col-xs-6 col-sm-2 col-md-1">
-					<a ng-click="selectedMode = 3"
-						ng-class="{ selected : selectedMode == 3 }"
-						ui-sref="content.setting.password">密码管理
-					</a>
-				</li>
-				<li class="col-xs-6 col-sm-2 col-md-1">
-					<a ng-click="selectedMode = 4"
-						ng-class="{ selected : selectedMode == 4 }"
-						ui-sref="content.setting.account">账号管理
-					</a>
-				</li>
-			</ul>
+			<div class="clearfix">
+				<ul>
+					<li>
+						<a ng-click="selectedMode = 1"
+							ng-class="{ selected : selectedMode == 1 }"
+							ui-sref="content.setting.basic">基础设置
+						</a>
+					</li>
+					<li>
+						<a ng-click="selectedMode = 2"
+							ng-class="{ selected : selectedMode ==2 }"
+							ui-sref="content.setting.data">个人资料
+						</a>
+					</li>
+					<li>
+						<a ng-click="selectedMode = 3"
+							ng-class="{ selected : selectedMode == 3 }"
+							ui-sref="content.setting.password">密码管理
+						</a>
+					</li>
+					<li>
+						<a ng-click="selectedMode = 4"
+							ng-class="{ selected : selectedMode == 4 }"
+							ui-sref="content.setting.account">账号管理
+						</a>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</header>
 

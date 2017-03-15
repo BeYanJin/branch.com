@@ -222,7 +222,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
                     controller: 'settingCtrl'
                 },
                 "body@content.setting": {
-                    templateUrl: 'templates/setting/password.html'
+                    templateUrl: 'templates/setting/basic.html'
                 }
             },
             resolve: {
@@ -238,21 +238,32 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
                     templateUrl: 'templates/setting/basic.html'
                 }
             }
-        }).state('content.setting.data', {
+        })
+        .state('content.setting.data', {
             url: '',
             views: {
                 "body@content.setting": {
                     templateUrl: 'templates/setting/data.html'
                 }
             }
-        }).state('content.setting.password', {
+        })
+        .state('content.setting.password', {
             url: '',
             views: {
                 "body@content.setting": {
                     templateUrl: 'templates/setting/password.html'
                 }
             }
-        }).state('content.setting.account', {
+        })
+        .state('content.setting.passwordByMes', {
+            url: '',
+            views: {
+                "body@content.setting": {
+                    templateUrl: 'templates/setting/password-by-mes.html'
+                }
+            }
+        })
+        .state('content.setting.account', {
             url: '',
             views: {
                 "body@content.setting": {

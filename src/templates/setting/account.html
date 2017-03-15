@@ -1,10 +1,21 @@
-<div class="account-wrap">
-    <div>
-        <span>手机号</span>
-        <input type="text" name="tele_num" />
-    </div>
-    <div>
-        <span>邮箱</span>
-        <input type="email" name="email_num" placeholder="请绑定您的邮箱" />
-    </div>
+<div class="account-wrap
+            col-xs-offset-1 col-xs-10
+            col-sm-offset-2 col-sm-8
+            col-md-offset-3 col-md-6
+            col-lg-offset-3 col-lg-6">
+
+    <form novalidate name="accountForm">
+        <div>
+            <label>手机号</label>
+            <input type="text" name="tele_num" value="18826077347" disabled />
+        </div>
+        <div class="emailbox">
+            <label>邮箱</label>
+            <input type="email" name="email_num" placeholder="请绑定您的邮箱" />
+        </div>
+        <div>
+            <button>保存</button>
+        </div>
+    </form>
+
 </div>

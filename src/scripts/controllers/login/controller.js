@@ -88,7 +88,7 @@ angular.module('myApp.controllers', [])
 
 
     /**
-    *  inputs对象给所有输入框提供公共资源(属性和方法)
+    *  forms对象给所有输入框提供公共资源(属性和方法)
     */
     $scope.forms = {
         /**
@@ -290,7 +290,7 @@ angular.module('myApp.controllers', [])
         submitted: function (form) {
 
             // 表单校验
-            $scope.forms.validate.apply(this, [form, "/WEB-INF/php/login/signin.php", function () {
+            $scope.forms.validate.apply(this, [form, "WEB-INF/php/login/signin.php", function () {
 
                 // 回调函数操作
                 if (this.valid) {
@@ -341,7 +341,7 @@ angular.module('myApp.controllers', [])
         submitted: function (form) {
 
             // 表单校验
-            $scope.forms.validate.apply(this, [form, "/WEB-INF/php/login/signup.php", function () {
+            $scope.forms.validate.apply(this, [form, "WEB-INF/php/login/signup.php", function () {
 
                 // 回调函数操作
                 if (this.valid) {
@@ -436,7 +436,7 @@ angular.module('myApp.controllers', [])
         submitted: function (form) {
 
             // 表单校验
-            $scope.forms.validate.apply(this, [form, "/WEB-INF/php/login/validate_code.php", function () {
+            $scope.forms.validate.apply(this, [form, "WEB-INF/php/login/validate_code.php", function () {
 
                 // 回调函数操作
                 if (this.valid) {

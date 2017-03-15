@@ -1,11 +1,39 @@
 @import "../public-resource/variables";
 @import "../public-resource/mixins";
 
+@media screen and (max-width: 1200px) {
+    .setting-wrap {
+        .header-wrap {
+            div:last-child {
+                width: 60%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .setting-wrap {
+        .header-wrap {
+            div:last-child {
+                width: 70%;
+            }
+        }
+    }
+}
+
+
 @media screen and (max-width: 768px) {
     .setting-wrap {
         .header-wrap {
+            div:last-child {
+                width: 80%;
+            }
             ul {
                 li {
+                    width: 50%;
+                    &:first-child {
+                        border-left: none;
+                    }
                     &:nth-child(2) {
                         border-right: none;
                     }
@@ -13,6 +41,21 @@
                         border-right: none;
                     }
                 }
+            }
+        }
+        .basic-wrap {
+            form .cell {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 568px) {
+    .setting-wrap {
+        .header-wrap {
+            div:last-child {
+                width: 100%;
             }
         }
         .basic-wrap {
